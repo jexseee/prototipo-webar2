@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Prototipo WebAR - Imagen + Texto</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; font-family: sans-serif; }
+      #info {
+        position: absolute; top: 10px; left: 10px;
+        background: rgba(0,0,0,0.6); color: white;
+        padding: 8px 12px; border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="info">📱 Prototipo WebAR - Precaución Ante Sismos </div>
+
+    <a-scene embedded arjs>
+      <!-- Marcador Hiro -->
+      <a-marker preset="hiro">
+        <!-- Imagen como plano -->
+        <a-plane src="imagen.jpg" height="1" width="1.5" position="0 0.5 0"></a-plane>
+        <!-- Texto flotante -->
+        <a-text value="¡Agáchate y cúbrete aquí!" position="-0.8 1.2 0" color="#FFD700" width="3"></a-text>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      // Registrar service worker para modo offline
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+  </body>
+</html>
